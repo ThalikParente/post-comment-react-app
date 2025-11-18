@@ -9,6 +9,14 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
 
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                node-version: '18'
+
+            - name: Instalar Dependências
+              run: npm install
+
             - name: Cypress Tests
               uses: cypress-io/github-action@v5
               with:

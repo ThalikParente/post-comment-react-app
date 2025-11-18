@@ -2,17 +2,17 @@ name: CI
 
 on: [push]
 jobs:
-  build-test: # 2 espaços (Correto)
-    runs-on: ubuntu-22.04 # 4 espaços (Correto)
-    steps: # 4 espaços (Correto)
+  build-test:
+    runs-on: ubuntu-22.04 
+    steps: 
     
-      - name: Checkout # 6 espaços (Correto)
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node.js # 6 espaços (Correto)
+      - name: Setup Node.js 
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # 10 espaços (Correto)
+          node-version: '20'
 
       - name: Instalar Dependências
         run: npm install
@@ -24,7 +24,7 @@ jobs:
           build: 'npm run build'
           start: 'npm run dev'
 
-      - name: Upload Artifacts # 6 espaços (Novo passo, alinhado com os outros -name:)
+      - name: Upload Artifacts 
         uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -24,4 +24,3 @@ jobs:
                     cypress/videos
                     cypress/results
                 if-no-files-found: ignore
-              

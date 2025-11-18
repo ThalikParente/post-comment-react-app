@@ -2,33 +2,35 @@ name: CI
 
 on: [push]
 jobs:
-    build-test:
-        runs-on: ubuntu-22.04
-        steps:
+  build-test:
+    runs-on: ubuntu-22.04
+    steps:
 
-            - name: Checkout
-              uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v3
-              with:
-                node-version: '18'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-            - name: Instalar Dependências
-              run: npm install
+      - name: Instalar Dependências
+        run: npm install
 
-            - name: Cypress Tests
-              uses: cypress-io/github-action@v5
-              with:
-                start: 'npm run dev'
-                build: 'npm run build'
+      - name: Cypress Tests
+        uses: cypress-io/github-action@v5
+        with:
+          install-cypress: true
+          build: 'npm run build'
+          start: 'npm run dev'
 
-            - uses: actions/upload-artifact@v4
-              if: always()
-              with:
-                name: Cypress Result
-                path:
-                    cypress/screenshots
-                    cypress/videos
-                    cypress/results
-                if-no-files-found: ignore
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Cypress Result
+          path: |
+            cypress/screenshots
+            cypress/videos
+            cypress/results
+          if-no-files-found: ignore
